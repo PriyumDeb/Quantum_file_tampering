@@ -107,8 +107,8 @@ Byte 10 | Original: t | Received: t | Ones:   81 | ✅ MATCH
 Byte 11 | Original: u | Received: u | Ones:   87 | ✅ MATCH
 Byte 12 | Original: m | Received: m | Ones:   86 | ✅ MATCH
 
-The fingerprinting is only done wrt smaller files, 1 bytes of diffrence WRT smaller file its not tampered
-1 tampered byte located in files
+Adaptive scan completed across common bytes (1 byte(s) length difference).
+1 tampered byte(s) located in files.
 ```
 
 ### 3. Launch the Streamlit Interactive UI

@@ -29,14 +29,29 @@ def a(b,d):
                       pass
                   print(ctsq)
       return(totl)
-if statement=="S":
-    if len(c.a0)!=len(c.a1):
-        print("Tampered file detected Size of files mismatch, The difference is",len(c.a0)-len(c.a1) if len(c.a0)>len(c.a1) else len(c.a1)-len(c.a0),"bytes")
+if statement == "S":
+    if len(c.a0) != len(c.a1):
+        diff = abs(len(c.a0) - len(c.a1))
+        print(f"Tampered file detected: Size mismatch ({diff} byte(s) difference).")
     else:
-          totl=a(c.a0,c.a1)
-          print(f"{totl} tampered byte located in files" if totl>0 else "Files are not tampered")
+        totl = a(c.a0, c.a1)
+        if totl > 0:
+            print(f"{totl} tampered byte(s) located in files.")
+        else:
+            print("Files are not tampered.")
 else:
-     totl=a(c.a0,c.a1)
-     print(f"The fingerprinting is only done wrt smaller files, {len(c.a0)-len(c.a1) if len(c.a0)>len(c.a1) else len(c.a1)-len(c.a0)} bytes of diffrence" if len(c.a0)!=len(c.a1) else "Here is Checked report" , "WRT smaller file its not tampered" )
-     print(f"{totl} tampered byte located in files" if totl>0 else "Files are not tampered",)
+    totl = a(c.a0, c.a1)
+    diff = abs(len(c.a0) - len(c.a1))
+    if diff > 0:
+        print(f"Adaptive scan completed across common bytes ({diff} byte(s) length difference).")
+    else:
+        print("Here is the check report:")
+    
+    if totl > 0:
+        print(f"{totl} tampered byte(s) located in files.")
+    else:
+        if diff > 0:
+            print("Common bytes are not tampered (only length differs).")
+        else:
+            print("Files are not tampered.")
         

@@ -63,7 +63,8 @@ if st.button("Run Verification", type="primary", use_container_width=True):
                 summary_lines.append(clean)
 
         summary_text = " | ".join(summary_lines)
-        if "not tampered" in summary_text.lower():
+        is_clean = any("files are not tampered" in s.lower() for s in summary_lines) and not any("tampered byte" in s.lower() for s in summary_lines)
+        if is_clean:
             st.success(f"✅ {summary_text}")
         else:
             st.error(f"🚨 {summary_text}")
