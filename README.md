@@ -31,30 +31,16 @@ Modern digital files contain emojis, code, formatting, or binary data. The engin
 
 ## 🔬 How the Quantum Circuit Works (The 3-Qubit SWAP Test)
 
-```text
-               ┌───┐             ┌───┐┌─┐
-q_0 (Observer): ┤ H ├──────■──────┤ H ├┤M├
-               ├───┴─────┐│      └───┘└╥┘
-q_1 (Original): ┤ Ry(θ_1) ├X───────────╫─
-               ├───┴─────┐│            ║ 
-q_2 (Received): ┤ Ry(θ_2) ├X───────────╫─
-               └─────────┘             ║ 
-c: 1/══════════════════════════════════╩═
-                                       0 
-```
-
 1. **Qubit 0 (The Ancilla / Observer):** Initialized in superposition using a Hadamard (`H`) gate.
 2. **Qubit 1 (Original Byte):** Prepared by rotation $R_y(\theta_1)$ where $\theta_1 = (\text{byte}_1 / 255) \times \pi$.
 3. **Qubit 2 (Received Byte):** Prepared by rotation $R_y(\theta_2)$ where $\theta_2 = (\text{byte}_2 / 255) \times \pi$.
 4. **Controlled-SWAP (Fredkin Gate):** Controlled by Qubit 0, conditionally swaps Qubit 1 and Qubit 2.
 5. **Interference & Measurement:** A second Hadamard on Qubit 0 measures the state overlap:
-   $$P(\text{Ancilla} = 1) = \frac{1 - |\langle\psi_1|\psi_2\rangle|^2}{2}$$
-   - **If the bytes are identical:** $|\langle\psi_1|\psi_2\rangle|^2 = 1 \implies P(1) = 0$ (The observer qubit always collapses to `0`).
    - **If the bytes are tampered:** The fidelity drops and the observer qubit starts measuring `1`!
 
 ---
 
-## 🌪️ Depolarizing Noise Model & Statistical Filter
+## 🌪️  Noise Model & Statistical Filter
 
 Physical quantum processors are noisy. To simulate real quantum hardware rather than ideal math:
 - **Depolarizing Noise (`qiskit_aer.noise`):** Added a 1-qubit depolarizing error ($1\%$) to `H` gates and a 3-qubit depolarizing error ($1.1\%$) to `CSWAP` gates.
@@ -122,4 +108,5 @@ Open your browser at `http://localhost:8501` to upload files, compare byte angle
 ## 📁 Supported File Formats
 - Text files (`.txt`, `.log`, `.md`)
 - Code and data files (`.py`, `.json`, `.csv`, `.sh`)
-- Extensible to any binary payload
+## Can handel if upgraded
+- any binary format (png,jpef,etc)
